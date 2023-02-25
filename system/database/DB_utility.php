@@ -36,6 +36,8 @@ class CI_DB_utility extends CI_DB_forge {
 	 */
 	function __construct()
 	{
+		parent::__construct();
+
 		// Assign the main database object to $this->db
 		$CI =& get_instance();
 		$this->db =& $CI->db;
