@@ -344,11 +344,11 @@ if ( ! function_exists('show_404'))
 */
 if ( ! function_exists('log_message'))
 {
-	function log_message($level = 'error', $message, $php_error = FALSE)
+	function log_message($level = 'error', $message = '', $php_error = FALSE)
 	{
 		static $_log;
 
-		if (config_item('log_threshold') == 0)
+		if (config_item('log_threshold') == 0 || $message == '')
 		{
 			return;
 		}
