@@ -843,10 +843,27 @@ class CI_Input {
 	 */
 	public function is_ajax_request()
 	{
-		return ($this->server('HTTP_X_REQUESTED_WITH') === 'XMLHttpRequest');
+		return ( ! empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest');
+	}
+	// --------------------------------------------------------------------
+
+	/**
+	 * Get Request Method
+	 *
+	 * Return the request method
+	 *
+	 * @param	bool	$upper	Whether to return in upper or lower case
+	 *				(default: FALSE)
+	 * @return 	string
+	 */
+	public function method($upper = FALSE)
+	{
+		return ($upper)
+			? strtoupper($this->server('REQUEST_METHOD'))
+			: strtolower($this->server('REQUEST_METHOD'));
 	}
 
-	// --------------------------------------------------------------------
+	// ------------------------------------------------------------------------
 
 	/**
 	 * Is cli Request?
