@@ -198,8 +198,7 @@ if ( ! function_exists('random_string'))
 	{
 		switch($type)
 		{
-			case 'basic'	: return mt_rand();
-				break;
+			case 'basic'	: return mt_rand();				
 			case 'alnum'	:
 			case 'numeric'	:
 			case 'nozero'	:

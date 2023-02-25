@@ -1027,7 +1027,6 @@ class CI_Email {
 		switch ($this->_get_content_type())
 		{
 			case 'plain' :
-
 				$hdr .= "Content-Type: text/plain; charset=" . $this->charset . $this->newline;
 				$hdr .= "Content-Transfer-Encoding: " . $this->_get_encoding();
 
@@ -1040,12 +1039,8 @@ class CI_Email {
 				{
 					$this->_finalbody = $hdr . $this->newline . $this->newline . $this->_body;
 				}
-
-				return;
-
-			break;
+				return;			
 			case 'html' :
-
 				if ($this->send_multipart === FALSE)
 				{
 					$hdr .= "Content-Type: text/html; charset=" . $this->charset . $this->newline;
@@ -1068,7 +1063,6 @@ class CI_Email {
 
 				$this->_finalbody = $body . $this->_prep_quoted_printable($this->_body) . $this->newline . $this->newline;
 
-
 				if ($this->_get_protocol() == 'mail')
 				{
 					$this->_header_str .= rtrim($hdr);
@@ -1078,15 +1072,11 @@ class CI_Email {
 					$this->_finalbody = $hdr . $this->_finalbody;
 				}
 
-
 				if ($this->send_multipart !== FALSE)
 				{
 					$this->_finalbody .= "--" . $this->_alt_boundary . "--";
 				}
-
-				return;
-
-			break;
+				return;			
 			case 'plain-attach' :
 
 				$hdr .= "Content-Type: multipart/".$this->multipart."; boundary=\"" . $this->_atc_boundary."\"" . $this->newline . $this->newline;
@@ -1103,7 +1093,6 @@ class CI_Email {
 				$body .= "Content-Transfer-Encoding: " . $this->_get_encoding() . $this->newline . $this->newline;
 
 				$body .= $this->_body . $this->newline . $this->newline;
-
 			break;
 			case 'html-attach' :
 
@@ -1129,7 +1118,6 @@ class CI_Email {
 
 				$body .= $this->_prep_quoted_printable($this->_body) . $this->newline . $this->newline;
 				$body .= "--" . $this->_alt_boundary . "--" . $this->newline . $this->newline;
-
 			break;
 		}
 
