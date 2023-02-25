@@ -1995,8 +1995,7 @@ class CI_Email {
 	protected function _mime_types($ext = "")
 	{
 		$mimes = array(	'hqx'	=>	'application/mac-binhex40',
-						'cpt'	=>	'application/mac-compactpro',
-						'doc'	=>	'application/msword',
+						'cpt'	=>	'application/mac-compactpro',						
 						'bin'	=>	'application/macbinary',
 						'dms'	=>	'application/octet-stream',
 						'lha'	=>	'application/octet-stream',

@@ -128,8 +128,7 @@ $mobiles = array(
 					// Operating Systems
 					'symbian'				=> "Symbian",
 					'SymbianOS'				=> "SymbianOS",
-					'elaine'				=> "Palm",
-					'palm'					=> "Palm",
+					'elaine'				=> "Palm",					
 					'series60'				=> "Symbian S60",
 					'windows ce'			=> "Windows CE",
 
