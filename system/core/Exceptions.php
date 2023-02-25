@@ -114,7 +114,7 @@ class CI_Exceptions {
 		}
 
 		echo $this->show_error($heading, $message, 'error_404', 404);
-		exit;
+		return;
 	}
 
 	// --------------------------------------------------------------------
