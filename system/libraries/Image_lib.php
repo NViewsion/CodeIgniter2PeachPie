@@ -1228,8 +1228,7 @@ class CI_Image_lib {
 				break;
 			default		:
 							$this->set_error(array('imglib_unsupported_imagecreate'));
-							return FALSE;
-				break;
+							return FALSE;				
 		}
 
 		return TRUE;
