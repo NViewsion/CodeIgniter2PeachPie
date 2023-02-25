@@ -117,24 +117,20 @@ function &DB($params = '', $active_record_override = NULL)
 	if ($active_record_override !== NULL)
 	{
 		$active_record = $active_record_override;
-	}
-
-	require_once(BASEPATH.'database/DB_driver.php');
+	}	
 
 	if ( ! isset($active_record) OR $active_record == TRUE)
-	{
-		require_once(BASEPATH.'database/DB_active_rec.php');
-
+	{		
 		if ( ! class_exists('CI_DB'))
 		{
-			eval('class CI_DB extends CI_DB_active_record { }');
+			require_once(BASEPATH.'database/abstracts/CI_DB_active_record.php');
 		}
 	}
 	else
 	{
 		if ( ! class_exists('CI_DB'))
 		{
-			eval('class CI_DB extends CI_DB_driver { }');
+			require_once(BASEPATH.'database/abstracts/CI_DB_driver.php');
 		}
 	}
 
