@@ -204,9 +204,8 @@ if ( ! function_exists('random_string'))
 			case 'numeric'	:
 			case 'nozero'	:
 			case 'alpha'	:
-
-					switch ($type)
-					{
+				switch ($type)
+				{
 						case 'alpha'	:	$pool = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
 							break;
 						case 'alnum'	:	$pool = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -215,28 +214,25 @@ if ( ! function_exists('random_string'))
 							break;
 						case 'nozero'	:	$pool = '123456789';
 							break;
-					}
+				}
 
-					$str = '';
-					for ($i=0; $i < $len; $i++)
-					{
-						$str .= substr($pool, mt_rand(0, strlen($pool) -1), 1);
-					}
-					return $str;
-				break;
+				$str = '';
+
+				for ($i=0; $i < $len; $i++)
+				{
+					$str .= substr($pool, mt_rand(0, strlen($pool) -1), 1);
+				}
+
+				return $str;				
 			case 'unique'	:
 			case 'md5'		:
-
-						return md5(uniqid(mt_rand()));
-				break;
+					return md5(uniqid(mt_rand()));				
 			case 'encrypt'	:
 			case 'sha1'	:
+					$CI =& get_instance();
+					$CI->load->helper('security');
 
-						$CI =& get_instance();
-						$CI->load->helper('security');
-
-						return do_hash(uniqid(mt_rand(), TRUE), 'sha1');
-				break;
+					return do_hash(uniqid(mt_rand(), TRUE), 'sha1');				
 		}
 	}
 }
