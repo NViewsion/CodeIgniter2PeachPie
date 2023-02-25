@@ -30,6 +30,10 @@ public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 }
 ```
 
+## Sample
+
+[This project](https://github.com/daleffe/CodeIgniter2PeachPie-sample) provides REST API, pages with Bootstrap 5/JQuery and authentication.
+
 ## CodeIgniter 2
 
 Open Source PHP Framework (originally from EllisLab)
