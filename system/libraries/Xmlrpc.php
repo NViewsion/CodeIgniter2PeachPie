@@ -246,7 +246,7 @@ class CI_Xmlrpc {
 			}
 			elseif (is_array($value['0']) && ($value['1'] == 'struct' OR $value['1'] == 'array'))
 			{
-				while (list($k) = each($value['0']))
+				foreach ($value['0'] as $k => $v)
 				{
 					$value['0'][$k] = $this->values_parsing($value['0'][$k], TRUE);
 				}
@@ -508,7 +508,7 @@ class XML_RPC_Response
 		
 		if ($array !== FALSE && is_array($array))
 		{
-			while (list($key) = each($array))
+			foreach ($array as $key => $value)
 			{
 				if (is_array($array[$key]))
 				{
@@ -572,7 +572,7 @@ class XML_RPC_Response
 			reset($xmlrpc_val->me['struct']);
 			$arr = array();
 
-			while (list($key,$value) = each($xmlrpc_val->me['struct']))
+			foreach (get_object_vars($xmlrpc_val->me['struct']) as $key => $value)
 			{
 				$arr[$key] = $this->xmlrpc_decoder($value);
 			}
@@ -1112,7 +1112,9 @@ class XML_RPC_Message extends CI_Xmlrpc
 	}
 
 
-	function addParam($par) { $this->params[]=$par; }
+	function addParam($par) { 
+		$this->params[] = $par; 
+	}
 
 	function output_parameters($array=FALSE)
 	{
@@ -1120,7 +1122,7 @@ class XML_RPC_Message extends CI_Xmlrpc
 		
 		if ($array !== FALSE && is_array($array))
 		{
-			while (list($key) = each($array))
+			foreach ($array as $key => $value)
 			{
 				if (is_array($array[$key]))
 				{
@@ -1187,7 +1189,7 @@ class XML_RPC_Message extends CI_Xmlrpc
 
 			$arr = array();
 
-			while (list($key,$value) = each($param->me['struct']))
+			foreach ($param->me['struct'] as $key => $value)
 			{
 				$arr[$key] = $this->decode_message($value);
 			}
@@ -1309,14 +1311,11 @@ class XML_RPC_Values extends CI_Xmlrpc
 		switch($this->mytype)
 		{
 			case 3:
-				return 'struct';
-				break;
+				return 'struct';				
 			case 2:
-				return 'array';
-				break;
+				return 'array';				
 			case 1:
-				return 'scalar';
-				break;
+				return 'scalar';				
 			default:
 				return 'undef';
 		}
@@ -1332,7 +1331,7 @@ class XML_RPC_Values extends CI_Xmlrpc
 				// struct
 				$rs .= "<struct>\n";
 				reset($val);
-				while (list($key2, $val2) = each($val))
+				foreach ($val as $key2 => $val2)
 				{
 					$rs .= "<member>\n<name>{$key2}</name>\n";
 					$rs .= $this->serializeval($val2);
