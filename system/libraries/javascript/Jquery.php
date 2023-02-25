@@ -37,6 +37,8 @@ class CI_Jquery extends CI_Javascript {
 
 	public function __construct($params)
 	{
+		parent::__construct($params);
+
 		$this->CI =& get_instance();
 		extract($params);
 
@@ -176,8 +178,10 @@ class CI_Jquery extends CI_Javascript {
 	 * @param	string	- Javascript code for mouse out
 	 * @return	string
 	 */
-	function _hover($element = 'this', $over, $out)
+	function _hover($element = 'this', $over = '', $out = '')
 	{
+		if ($over == '' && $out == '') return;
+
 		$event = "\n\t$(" . $this->_prep_element($element) . ").hover(\n\t\tfunction()\n\t\t{\n\t\t\t{$over}\n\t\t}, \n\t\tfunction()\n\t\t{\n\t\t\t{$out}\n\t\t});\n";
 
 		$this->jquery_code_for_compile[] = $event;
@@ -707,8 +711,10 @@ class CI_Jquery extends CI_Javascript {
 	 * @return	string
 	 */
 	
-	function _updater($container = 'this', $controller, $options = '')
+	function _updater($container = 'this', $controller = '', $options = '')
 	{	
+		if ($controller == '') return;
+
 		$container = $this->_prep_element($container);
 		
 		$controller = (strpos('://', $controller) === FALSE) ? $controller : $this->CI->config->site_url($controller);

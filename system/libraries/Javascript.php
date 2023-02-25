@@ -155,7 +155,7 @@ class CI_Javascript {
 	 */
 	function focus($element = 'this', $js = '')
 	{
-		return $this->js->__add_event($focus, $js);
+		return $this->js->__add_event($element, $js);
 	}
 
 	// --------------------------------------------------------------------
@@ -171,8 +171,10 @@ class CI_Javascript {
 	 * @param	string	- Javascript code for mouse out
 	 * @return	string
 	 */
-	function hover($element = 'this', $over, $out)
+	function hover($element = 'this', $over = '', $out = '')
 	{
+		if ($over == '' && $out == '') return;
+
 		return $this->js->__hover($element, $over, $out);
 	}
 
