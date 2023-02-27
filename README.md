@@ -6,6 +6,24 @@ Customized CodeIgniter 2 framework for PeachPie projects.
 
 Edit the 'Program.cs' file and replace the following content:
 ```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    // Adds a default in-memory implementation of IDistributedCache.
+    services.AddDistributedMemoryCache();
+
+    services.AddSession(options =>
+    {
+        options.IdleTimeout = TimeSpan.FromMinutes(30);
+        options.Cookie.HttpOnly = true;                
+        options.Cookie.IsEssential = true;
+    });
+
+    services.AddPhp(options =>
+    {
+        options.Session.AutoStart = false;
+    });
+}
+
 public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 {
     if (env.IsDevelopment())
